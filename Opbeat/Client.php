@@ -1,6 +1,5 @@
 <?php namespace Opbeat;
 
-use Illuminate\Contracts\Config\Repository as Config;
 use ErrorException;
 use Exception;
 use Opbeat\Log\Entry;
@@ -16,13 +15,17 @@ class Client
     protected $app_id;
     protected $access_token;
 
-    public function __construct(Config $config)
+    public function __construct(array $config)
     {
-        $this->organization_id  = $config->get('opbeat.organization_id');
-        $this->app_id           = $config->get('opbeat.app_id');
-        $this->access_token     = $config->get('opbeat.access_token');
-        $enableExceptionHandler = $config->get('opbeat.enable_exception_handler', true);
-        $enableErrorHandler     = $config->get('opbeat.enable_error_handler', true);
+        $this->organization_id  = $config['organization_id'];
+        $this->app_id           = $config['app_id'];
+        $this->access_token     = $config['access_token'];
+        $enableExceptionHandler = isset($config['enable_exception_handler'])
+            ? $config['enable_exception_handler']
+            : true;
+        $enableErrorHandler     = isset($config['enable_error_handler'])
+            ? $config['enable_error_handler']
+            : true;
 
         if ($enableExceptionHandler) {
             $this->enableExceptionHandler();

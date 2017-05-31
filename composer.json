@@ -1,5 +1,5 @@
 {
-    "name": "madsleejensen/opbeat-php",
+    "name": "starti/opbeat-php",
     "description": "Opbeat wrapper for PHP",
     "license": "MIT",
     "authors": [
@@ -19,7 +19,6 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "illuminate/contracts": "~5.0",
         "guzzlehttp/guzzle": "~6.2"
     },
     "require-dev": {
